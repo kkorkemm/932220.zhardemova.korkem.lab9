@@ -66,7 +66,20 @@
 <script>
     const result = document.getElementById('result');
 
+    const operations = new Set(['-', '+', '*', '/', '=']);
     function appendToDisplay(value) {
+
+        if (result.value === '') {
+            if (operations.has(value)) {
+                alert('Операция не может быть первой');
+                return;
+            }
+            if (value === '.') {
+                alert('Нельзя вводить точку первой');
+                return;
+            }
+        }
+
         result.value += value;
     }
 
@@ -83,6 +96,8 @@
             result.value = eval(result.value);
         } catch (e) {
             result.value = 'Error';
+            alert('Неправильное выражение');
+            return;
         }
     }
 </script>
